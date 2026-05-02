@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع الاستقلال 80 - المبرمجة رنيم مهند</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --j-red: #fc0723;
+            --j-green: #007A3D;
+            --j-black: #000000;
+            --j-white: #ffffff44;
+            --j-gold: #dfe234c5;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--j-black);
+            color: white;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. صفحة الاستقبال والتعريف --- */
+        .landing-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            border-bottom: 8px solid var(--j-red);
+            padding: 20px;
+        }
+
+        .header-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+        }
+
+        .student-name {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--j-red);
+            font-weight: 900;
+            margin: 10px 0;
+        }
+
+        .manager-name {
+            color: var(--j-white);
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            color: var(--j-gold);
+            font-size: 1.1rem;
+        }
+
+        .star-portal {
+            cursor: pointer;
+            margin: 30px 0;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .star-portal:hover {
+            transform: scale(1.15);
+        }
+
+        .seven-point-star {
+            width: 120px;
+            height: 120px;
+            background: #CE1126;
+            /* اللون الأحمر الملكي */
+            /* إحداثيات النجمة السباعية الدقيقة (7 رؤوس) */
+            clip-path: polygon(50% 0%, 63% 25%, 91% 19%, 78% 46%, 98% 69%, 70% 77%, 75% 100%, 50% 85%, 25% 100%, 30% 77%, 2% 69%, 22% 46%, 9% 19%, 37% 25%);
+            /* تأثير التوهج والحركة */
+            box-shadow: 0 0 40px rgba(206, 17, 38, 0.6);
+            animation: pulse 2s infinite;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+        }
+
+        /* --- 2. الموسوعة التفاعلية (عناوين بألوان العلم) --- */
+        .info-section {
+            background-color: #000000;
+            color: var(--j-red);
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            background: white;
+            transition: 0.5s ease-out;
+            padding: 0 25px;
+        }
+
+        .active .accordion-content {
+            max-height: 500px;
+            padding: 30px;
+            border: 1px solid #eee;
+
+            .bg-black {
+                background: var(--j-black);
+            }
+
+            .bg-white {
+                background: #ffffff;
+                color: var(--j-black) !important;
+                border: 1px solid #ddd;
+            }
+
+            .bg-green {
+                background: var(--j-green);
+            }
+
+            .bg-red {
+                background: var(--j-red);
+            }
+
+            /* --- 3. النشاط التفاعلي (خارج الصندوق) --- */
+            .activity-zone {
+                background: #111;
+                padding: 100px 20px;
+                text-align: center;
+            }
+
+            .challenge-card {
+                max-width: 700px;
+                margin: 0 auto;
+                background: #1a1a1a;
+                padding: 50px;
+                border-radius: 40px;
+                border: 2px solid var(--j-gold);
+            }
+
+            .btn-option {
+                background: transparent;
+                border: 2px solid var(--j-white);
+                color: white;
+                padding: 12px 30px;
+                border-radius: 50px;
+                cursor: pointer;
+                margin: 10px;
+                font-family: 'Cairo';
+                transition: 0.3s;
+            }
+
+            .btn-option:hover {
+                background: var(--j-white);
+                color: black;
+            }
+
+            /* --- 4. ركن التعبير عن الحب للوطن والملك --- */
+            #love-letter-zone {
+                display: none;
+                margin-top: 40px;
+                animation: slideUp 0.8s;
+            }
+
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            textarea {
+                width: 100%;
+                height: 150px;
+                border-radius: 20px;
+                padding: 20px;
+                font-family: 'Cairo';
+                font-size: 1.2rem;
+                margin: 20px 0;
+                border: none;
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-final {
+                background: linear-gradient(90deg, var(--j-red), var(--j-green));
+                color: white;
+                padding: 18px 60px;
+                border: none;
+                border-radius: 50px;
+                font-size: 1.5rem;
+                font-weight: 900;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .btn-final:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px var(--j-gold);
+            }
+
+            footer {
+                background: #000;
+                padding: 50px;
+                text-align: center;
+                opacity: 0.7;
+                border-top: 1px solid #222;
+            }
+    </style>
+</head>
+
+<body>
+    <section class="landing-page">
+        <div class="header-box">
+            <h2 style="color:var(--j-green)">مدرسة نوارة الثانوية الأولى المختلطة</h2 <p class="manager-name">بإشراف
+            المديرة الفاضلة: <strong>منى العدوان</strong></p>
+            <p style="margin:0;">اعداد الطالبة:</p>
+            <h1 class="student-name">رنيم مهند أبو عساف</h1>
+            <p class="contact-info">📞 للتواصل: 062009659</p>
+            <div class="star-portal" onclick="document.getElementById('info').scrollIntoView();">
+                <div class="seven-point-star"></div>
+                <p style="margin-top:20px; font-weight:bold; color: var(--j-white);">انقري على النجمة السباعية للدخول
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="info" class="info-section">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:50px; font-size:2.5rem;">موسوعة استقلال الأردن 80 🇯🇴</h2>
+            <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header bg-gold"><span>⚫ فجر الحرية (1946)</span> <span>▼</span></div>
+                <div class="accordion-content">في 25 أيار 1946، بزغ فجر الاستقلال وأعلن الأردن دولة هاشمية حرة ذات سيادة
+                    كاملة بقيادة الملك المؤسس عبد الله الأول، ومن هنا بدأت قصة المجد.</div>
+            </div>
+            <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header bg-black"><span>⚪ تعريب الجيش (1956)</span> <span>▼</span></div>
+                <div class="accordion-content">بقرار شجاع من الحسين بن طلال، تم تعريب قيادة الجيش ليكون "عربياً" اسماً
+                    وفعلاً، ويصبح درعاً يحمي أحلامنا.</div>
+            </div>
+            <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header bg-gold"><span>🟢 رؤية المئوية الثانية</span> <span>▼</span></div>
+                <div class="accordion-content">بقيادة الملك عبد الله الثاني، نسير نحو مستقبل رقمي متطور، يركز على عقول
+                    الشباب والإبداع التكنولوجي.</div>
+            </div>
+            <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header bg-black"><span>🔴 معالم وصمود سياسي</span> <span>▼</span></div>
+                <div class="accordion-content">يظل الأردن قلب العرب النابض، ثابتاً في مواقفه، فخوراً بآثاره كالبتراء،
+                    ومخلصاً لوصايته الهاشمية على المقدسات.</div>
+            </div>
+        </div>
+    </section>
+    <section class="activity-zone">
+        <div class="challenge-card"></div>
+        <div id="quiz-part">
+            <h2 style="color: var(--j-gold);">نشاط تفاعلي
+                <!DOCTYPE html>
+                <html lang="en">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=, initial-scale=1.0">
+                    <title>Document</title>
+                </head>
+
+                <body>
+
+                </body>
+
+                </html> 💡
+            </h2>
+            <p style="font-size: 1.3rem;">لفتح ركن "رسائل الحب للوطن"، أثبتي أنكِ تعرفين رمزنا الوطني:</p>
+            <p style="color: #aaa;">ما هي الزهرة التي تمثل القوة والجمال في براري الأردن؟</p>
+            <div style="margin-top:20px;"> <button class="btn-option" onclick="unlock(false)">الدحنون</button> <button
+                    class="btn-option" onclick="unlock(true)">السوسنة السوداء</button> <button class="btn-option"
+                    onclick="unlock(false)">الأقحوان</button> </div>
+        </div>
+        <div id="love-letter-zone">
+            <h2 style="color: var(--j-green);">أحسنتِ! لقد فتحتِ ركن الولاء ✨</h2>
+            <p>بصفتكِ جزءاً من هذا الوطن العظيم، اكتبي رسالة تعبري فيها عن حبكِ للملك والوطن:</p> <textarea
+                id="finalMsg" placeholder="اكتبي هنا من قلبكِ يا رنيم..."></textarea> <br> <button class="btn-final"
+                onclick="grandCelebration()">إرسال واحتفال ملكي! 👑🇯🇴</button>
+        </div>
+        </div>
+    </section>
+
+    <script>        function unlock(correct) { if (correct) { document.getElementById('quiz-part').style.display = 'none'; document.getElementById('love-letter-zone').style.display = 'block'; } else { alert("حاولي مرة أخرى! فكري في الزهرة السوداء النادرة التي تنمو في جبالنا 🇯🇴"); } } function grandCelebration() { const m = document.getElementById('finalMsg').value; if (!m) { alert("من فضلكِ، اكتبي كلماتكِ للوطن أولاً 😊"); return; } var end = Date.now() + (5 * 1000); var colors = ['#CE1126', '#007A3D', '#000000', '#ffffff', '#FFD700']; (function frame() { confetti({ particleCount: 15, angle: 60, spread: 60, origin: { x: 0 }, colors: colors }); confetti({ particleCount: 15, angle: 120, spread: 60, origin: { x: 1 }, colors: colors }); if (Date.now() < end) requestAnimationFrame(frame); }()); setTimeout(() => { alert("تم إرسال رسالتكِ بنجاح! \nشكراً لكِ يا رنيم.. كل عام والوطن وقائده بألف خير."); }, 500); }    </script>
+</body>
+
+</html>
